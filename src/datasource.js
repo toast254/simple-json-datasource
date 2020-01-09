@@ -17,6 +17,8 @@ export class GenericDatasource {
   }
 
   query(options) {
+    // used by panels to get data
+    // TODO
     var query = this.buildQueryParameters(options);
     query.targets = query.targets.filter(t => !t.hide);
 
@@ -38,6 +40,8 @@ export class GenericDatasource {
   }
 
   testDatasource() {
+    // used by data source configuration page to make sure the connection is working
+    // TODO
     return this.doRequest({
       url: this.url + '/',
       method: 'GET',
@@ -49,6 +53,8 @@ export class GenericDatasource {
   }
 
   annotationQuery(options) {
+    // used by dashboards to get annotations
+    // TODO
     var query = this.templateSrv.replace(options.annotation.query, {}, 'glob');
     var annotationQuery = {
       range: options.range,
@@ -72,6 +78,8 @@ export class GenericDatasource {
   }
 
   metricFindQuery(query) {
+    // used by query editor to get metric suggestions.
+    // TODO
     var interpolated = {
         target: this.templateSrv.replace(query, null, 'regex')
     };
@@ -84,6 +92,7 @@ export class GenericDatasource {
   }
 
   mapToTextValue(result) {
+    // TODO
     return _.map(result.data, (d, i) => {
       if (d && d.text && d.value) {
         return { text: d.text, value: d.value };
@@ -95,6 +104,7 @@ export class GenericDatasource {
   }
 
   doRequest(options) {
+    // TODO
     options.withCredentials = this.withCredentials;
     options.headers = this.headers;
 
@@ -102,6 +112,7 @@ export class GenericDatasource {
   }
 
   buildQueryParameters(options) {
+    // TODO
     //remove placeholder targets
     options.targets = _.filter(options.targets, target => {
       return target.target !== 'select metric';
@@ -122,6 +133,7 @@ export class GenericDatasource {
   }
 
   getTagKeys(options) {
+    // TODO
     return new Promise((resolve, reject) => {
       this.doRequest({
         url: this.url + '/tag-keys',
@@ -134,6 +146,7 @@ export class GenericDatasource {
   }
 
   getTagValues(options) {
+    // TODO
     return new Promise((resolve, reject) => {
       this.doRequest({
         url: this.url + '/tag-values',
