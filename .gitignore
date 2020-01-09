@@ -33,5 +33,5 @@ profile.cov
 grafana
 .notouch
 
-# Test artifacts
-/dist/test/
+# dist folder
+dist
